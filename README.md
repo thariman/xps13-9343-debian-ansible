@@ -1,12 +1,28 @@
-Role Name
+XPS13-9343-debian-ansible
 =========
 
-A brief description of the role goes here.
+This role will install all the necessary package to get XPS13 working
+on my i7/8GB - 256GB, Touch TL QHD+ (3200x1800) (Asian) Windows 8
+using Broadcom wifi
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+from my mac
+aria2c -x5 "http://cdimage.debian.org/debian-cd/8.3.0/amd64/iso-cd/debian-8.3.0-amd64-netinst.iso"
+insert usb thumbdrive
+diskutil unmountDisk /dev/disk4
+sudo dd if=debian-8.3.0-amd64-netinst.iso of=/dev/rdisk4 bs=1m
+connect external usb ethernet ( debian-8.3 does not support broadcom wifi out of the box )
+configure the bios for UEFI only http://www.dell.com/support/article/us/en/04/SLN297060/?docid=SLN297060
+Follow first 3 screenshoot only
+Press F12 when you see the Dell logo to enter boot menu
+boot from thumb drive under UEFI BOOT:
+Make sure it said Debian GNU/Linux UEFI Installer menu
+Choose Graphical install
+Partition disks Guided -use entire disk.
+I use btfs for the /
+Install only ssh and system essential
 
 Role Variables
 --------------
