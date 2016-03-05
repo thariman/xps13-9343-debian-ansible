@@ -1,0 +1,18 @@
+deb http://kambing.ui.ac.id/debian stretch main contrib non-free
+deb-src http://kambing.ui.ac.id/debian/ stretch main contrib non-free
+
+deb http://kambing.ui.ac.id/debian/ stretch-updates main contrib non-free
+deb-src http://kambing.ui.ac.id/debian/ stretch-updates main contrib non-free
+
+deb http://kambing.ui.ac.id/debian-security/ stretch/updates main contrib non-free
+deb-src http://kambing.ui.ac.id/debian-security/ stretch/updates main contrib non-free
+
+deb http://kambing.ui.ac.id/debian experimental main contrib non-free
+deb-src http://kambing.ui.ac.id/debian experimental main contrib non-free
+
+# neovim
+deb http://ppa.launchpad.net/neovim-ppa/unstable/ubuntu wily main
+deb-src http://ppa.launchpad.net/neovim-ppa/unstable/ubuntu wily main
+
+# tlp: Advanced Linux Power Management
+deb http://repo.linrunner.de/debian stretch main

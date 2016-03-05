@@ -1,2 +1,78 @@
 ---
 # tasks file for xps13-9343-debian-ansible
+
+- name: Copy source.list debian stretch
+  copy: src=sources.list dest=/etc/apt/sources.list owner=root group=root mode=0644 backup=yes
+
+- name: add docker gpg key
+  apt_key: keyserver=hkp://p80.pool.sks-keyservers.net:80 id=58118E89F3A912897C070ADBF76221572C52609D state=present
+
+- name: add neovim ppa gpg key
+  apt_key: keyserver=hkp://p80.pool.sks-keyservers.net:80 id=9DBB0BE9366964F134855E2255F96FCF8231B6DD state=present
+
+- name: add tlp apt-repo gpg key
+  apt_key: keyserver=pool.sks-keyservers.net id=CD4E8809 state=present
+
+- name: turn off translations, speed up apt-get update
+  lineinfile: dest=/etc/apt/apt.conf.d/99translations line='Acquire::Languages "none";' create=yes state=present backup=yes
+
+- name: update & upgrade
+  apt: update_cache=yes upgrade=yes cache_valid_time=3600
+
+- name: Installs base packages
+  action: apt name={{item}} state=installed install_recommends=no update_cache=yes cache_valid_time=3600
+  with_items:
+       - adduser
+       - alsa-utils
+       - apparmor
+       - apt-transport-https
+       - automake
+       - bash-completion
+       - bc
+       - bridge-utils
+       - bzip2
+       - ca-certificates
+       - cgroupfs-mount
+       - coreutils
+       - curl
+       - dnsutils
+       - file
+       - findutils
+       - gcc
+       - git
+       - gnupg
+       - gnupg-agent
+       - gnupg-curl
+       - grep
+       - gzip
+       - hostname
+       - indent
+       - iptables
+       - jq
+       - less
+       - libc6-dev
+       - libltdl-dev
+       - locales
+       - lsof
+       - make
+       - mount
+       - net-tools
+       - network-manager
+       - openvpn
+       - rxvt-unicode-256color
+       - s3cmd
+       - scdaemon
+       - silversearcher-ag
+       - ssh
+       - strace
+       - sudo
+       - tar
+       - tree
+       - tzdata
+       - unzip
+       - xclip
+       - xcompmgr
+       - xz-utils
+       - zip
+
+       
