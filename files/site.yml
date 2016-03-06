@@ -1,0 +1,5 @@
+---
+- hosts: all
+  become: True 
+  roles:
+    - { role: "xps13-9343-debian-ansible" }

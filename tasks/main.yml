@@ -90,4 +90,36 @@
 - name: Change the font to more readable size 
   copy: src=console-setup dest=/etc/default/console-setup owner=root group=root mode=0644 backup=yes
 
+- name: Download kernels 
+  get_url: url="http://kambing.ui.ac.id/debian/pool/main/l/linux/{{item}}" dest="/home/{{ lookup('env','USER') }}/{{item}}"
+  with_items:
+       - linux-headers-4.4.0-1-amd64_4.4.2-3_amd64.deb 
+       - linux-headers-4.4.0-1-common_4.4.2-3_amd64.deb 
+       - linux-headers-4.4.0-1-all_4.4.2-3_amd64.deb 
+       - linux-image-4.4.0-1-amd64_4.4.2-3_amd64.deb
 
+- name: Download broadcom wifi
+  get_url: url="http://kambing.ui.ac.id/debian/pool/non-free/b/broadcom-sta/broadcom-sta-dkms_6.30.223.271-2_all.deb" dest="/home/{{ lookup('env','USER') }}/broadcom-sta-dkms_6.30.223.271-2_all.deb"
+
+#- name: Install kernels 
+#  action: apt deb="/home/{{ lookup('env','USER') }}/{{item}}" state=present 
+#  with_items:
+#       - linux-headers-4.4.0-1-amd64_4.4.2-3_amd64.deb 
+#       - linux-image-4.4.0-1-amd64_4.4.2-3_amd64.deb 
+#       - linux-headers-4.4.0-1-all_4.4.2-3_amd64.deb 
+#       - linux-image-4.4.0-1-amd64_4.4.2-3_amd64.deb
+
+- name: Install kbuild
+  apt: name=linux-kbuild-4.4 state=present
+
+#- name: Install kernel header
+#  apt: deb="/home/thariman/linux-headers-4.4.0-1-common_4.4.2-3_amd64.deb"
+
+#- name: Install kernel header
+#  apt: deb="/home/thariman/linux-headers-4.4.0-1-all_4.4.2-3_amd64.deb"
+
+#- name: Install kernel header
+#  apt: deb="/home/thariman/linux-headers-4.4.0-1-amd64_4.4.2-3_amd64.deb"
+
+#- name: Install kernel image
+#  apt: deb="/home/thariman/linux-image-4.4.0-1-amd64_4.4.2-3_amd64.deb"
