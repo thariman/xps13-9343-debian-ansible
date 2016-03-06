@@ -75,4 +75,19 @@
        - xz-utils
        - zip
 
-       
+- name: Add user to sudoers and systemd groups
+  user: name={{ lookup('env','USER') }} groups=sudo append=yes
+
+- name: systemd groups
+  user: name={{ lookup('env','USER') }} groups=systemd-journal,systemd-network append=yes
+  
+- name: no password for sudo 
+  lineinfile: dest=/etc/sudoers line="{{ lookup('env','USER') }} ALL=(ALL) NOPASSWD:ALL" create=yes state=present backup=yes 
+
+- name: switch ctrl to capslock 
+  copy: src=keyboard dest=/etc/default/keyboard owner=root group=root mode=0644 backup=yes
+
+- name: Change the font to more readable size 
+  copy: src=console-setup dest=/etc/default/console-setup owner=root group=root mode=0644 backup=yes
+
+
