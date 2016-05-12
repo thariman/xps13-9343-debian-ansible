@@ -10,6 +10,7 @@ Requirements
 
 from my mac
 aria2c -x5 "http://cdimage.debian.org/debian-cd/8.3.0/amd64/iso-cd/debian-8.3.0-amd64-netinst.iso"
+http://cdimage.debian.org/cdimage/daily-builds/daily/current/amd64/iso-cd/
 insert usb thumbdrive
 diskutil unmountDisk /dev/disk4
 sudo dd if=debian-8.3.0-amd64-netinst.iso of=/dev/rdisk4 bs=1m
